@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IT Arena — Bilim kuch!</title>
+<style>
+:root{--bg:#050b1a;--bg2:#08122a;--card:#0b1730;--line:#16264a;--tx:#e8eeff;--mut:#8a9bc4;--pri:#2f6bff;--acc:#19e3a0;--acc2:#b6f04a;--warn:#ffb020;--bad:#ff5c7a;--sh:rgba(0,0,0,.35);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+:root[data-theme="light"]{--bg:#eef3ff;--bg2:#fff;--card:#fff;--line:#d9e2f7;--tx:#0b1530;--mut:#5a6a8f;--sh:rgba(30,60,140,.12);color-scheme:light}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+aside{background:var(--bg2);border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:var(--ah,100vh)}
+.logo{display:flex;gap:10px;align-items:center;padding:4px 8px 18px;font-weight:800;font-size:22px;letter-spacing:.5px}
+.logo small{display:block;font-weight:400;font-size:12px;color:var(--mut);letter-spacing:0}
+.nav{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;border:0;background:none;text-align:left;color:var(--tx);width:100%}
+.nav:hover{background:var(--line)}.nav.on{background:linear-gradient(90deg,#1d4fd8,#1b3fa8);color:#fff}
+.quote{margin-top:auto;color:var(--mut);font-size:13px;padding:10px}
+main{padding:0 24px 40px;min-width:0}
+.top{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:22px}
+.top .sp{flex:1}.ic{border:1px solid var(--line);background:var(--card);border-radius:10px;width:40px;height:40px}
+.me{display:flex;align-items:center;gap:10px}
+.av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--pri),var(--acc));display:grid;place-items:center;font-weight:800;color:#04122e;flex:none}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 6px 24px var(--sh)}
+.card h2,.card h3{margin:0 0 14px}
+.hero{position:relative;overflow:hidden;min-height:300px;background:radial-gradient(circle at 85% 40%,#1b3fd8 0,#0a1a55 40%,var(--card) 75%);color:#fff}
+:root[data-theme="light"] .hero{background:radial-gradient(circle at 85% 40%,#4f7dff 0,#2a4fd0 45%,#0b1f6b 85%)}
+.hero h1{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 14px;max-width:520px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:460px;color:#c8d6ff}
+.code{position:absolute;right:30px;top:30px;font:700 78px/1 Consolas,monospace;color:rgba(80,140,255,.35);user-select:none;pointer-events:none}
+.btn{border:0;border-radius:12px;padding:13px 22px;font-weight:700;color:#04221a;background:linear-gradient(90deg,var(--acc2),var(--acc));margin-top:16px}
+.btn.sec{background:var(--line);color:var(--tx)}.btn:disabled{opacity:.5;cursor:default}
+.tags{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;font-size:13px;color:#c8d6ff}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.st{border:1px solid var(--line);border-radius:12px;padding:12px 6px;text-align:center;font-size:12px;color:var(--mut)}
+.st b{display:block;font-size:20px;color:var(--tx)}
+.bar{height:8px;background:var(--line);border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pri),var(--acc));border-radius:8px;transition:width .5s}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tcard{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.ring{width:110px;height:110px;border-radius:50%;background:conic-gradient(var(--acc) var(--p,100%),var(--line) 0);display:grid;place-items:center;flex:none}
+.ring div{width:88px;height:88px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center;font-size:12px;color:var(--mut)}.ring b{font-size:28px;color:var(--tx);display:block;line-height:1}
+.badge{display:inline-block;background:var(--acc);color:#04221a;border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}
+.dirs{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.dir{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:left;transition:transform .15s,border-color .15s}
+.dir:hover{transform:translateY(-3px);border-color:var(--pri)}.dir .e{font-size:28px}.dir b{display:block;margin-top:6px}.dir small{color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:14px}th{color:var(--mut);font-weight:500;text-align:left;padding:8px}td{padding:10px 8px;border-top:1px solid var(--line)}
+tr.me td{background:rgba(25,227,160,.14);color:var(--acc);font-weight:700}
+.wrap{overflow-x:auto}
+.link{background:none;border:0;color:var(--pri);font-size:13px}
+.q{max-width:720px;margin:0 auto}.q h2{font-size:22px;line-height:1.3}
+.opt{display:block;width:100%;text-align:left;margin:10px 0;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg2)}
+.opt:hover:not(:disabled){border-color:var(--pri)}.opt.ok{border-color:var(--acc);background:rgba(25,227,160,.15)}.opt.no{border-color:var(--bad);background:rgba(255,92,122,.15)}
+.chart{display:flex;align-items:flex-end;gap:10px;height:180px;padding-top:10px}
+.chart div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:12px;color:var(--mut);height:100%}
+.chart i{width:100%;max-width:46px;background:linear-gradient(180deg,var(--acc),var(--pri));border-radius:8px 8px 0 0;min-height:3px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--acc);color:#04221a;padding:12px 20px;border-radius:12px;font-weight:700;z-index:9}
+input[type=text]{background:var(--bg2);border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:11px 14px;font:inherit;width:100%;max-width:340px}
+.lg{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:radial-gradient(circle at 70% 30%,#1b3fd8,#050b1a 70%);padding:20px}.lg[hidden]{display:none}.lg .box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;max-width:400px;width:100%;text-align:center}.gb{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px;border-radius:12px;border:1px solid #ccd;background:#fff;color:#222;font-weight:700;margin-top:18px}
+@media(max-width:980px){.grid{grid-template-columns:1fr}}
+@media(max-width:760px){.app{grid-template-columns:1fr}aside{position:fixed;inset:auto 0 0 0;height:auto;flex-direction:row;z-index:5;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);border-right:0;justify-content:space-around}.logo,.quote{display:none}.nav{flex-direction:column;gap:2px;padding:6px 8px;font-size:11px;width:auto}main{padding:0 14px 90px}.code{font-size:44px;right:14px}.me span.nm{display:none}}
+html{-webkit-text-size-adjust:100%}.row{flex-wrap:wrap}
+@media(max-width:760px){body{font-size:14px;overflow-x:hidden}main{padding:0 12px 96px}.top{padding:12px 0;margin-bottom:14px;gap:10px}#ttl{font-size:17px!important}aside{gap:0;padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px));overflow-x:auto;justify-content:flex-start}.nav{flex:1 0 56px;min-width:56px;padding:6px 2px;font-size:10px;align-items:center;justify-content:center;text-align:center;white-space:nowrap}.nav span{font-size:18px}.card{padding:14px;border-radius:14px}.hero{min-height:0}.hero h1{font-size:26px}.code{display:none}.hero .btn,.tcard .btn,.q>.btn{width:100%}.stats{gap:6px}.st b{font-size:16px}.dirs{grid-template-columns:1fr 1fr;gap:10px}.dir{padding:12px}.tcard{justify-content:center;text-align:center}.chart{gap:4px}table{font-size:13px}th,td{padding:8px 4px}.q h2{font-size:18px}.opt{padding:12px 14px}.toast{bottom:calc(84px + env(safe-area-inset-bottom,0px));width:max-content;max-width:90%}.lg .box{padding:22px}input[type=text]{max-width:100%}}
+@media(max-width:380px){.dirs{grid-template-columns:1fr}.st{font-size:10px}.hero h1{font-size:23px}}
+select{background:var(--bg2);border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:10px;font:inherit;width:100%;margin:4px 0 12px}label{color:var(--mut);font-size:13px}
+.ic{width:auto!important;min-width:40px;padding:0 8px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="lg" class="lg" hidden></div>
+<div class="app">
+<aside id="side"></aside>
+<main>
+ <header class="top">
+  <h2 id="ttl" style="margin:0;font-size:20px"></h2><span class="sp"></span>
+  <button class="ic" id="bl" aria-label="Bildirishnomalar">🔔</button><button class="ic" id="th" aria-label="Mavzuni almashtirish">☀</button>
+  <div class="me"><div class="av" id="tav"></div><span class="nm"><b id="tnm"></b><br><small style="color:var(--acc)">● Online</small></span></div>
+ </header>
+ <div id="view"></div>
+</main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const CATS={
+ asos:{n:"IT asoslari",e:"🖥️",d:"Kompyuter, OS, Hardware",q:[
+  ["CPU nimaning qisqartmasi?",["Central Processing Unit","Computer Personal Unit","Core Power Utility","Central Program Update"],0],
+  ["Qaysi biri operatsion tizim?",["Chrome","Linux","Photoshop","Excel"],1],
+  ["1 bayt necha bitga teng?",["4","8","16","10"],1],
+  ["RAM nima vazifani bajaradi?",["Doimiy saqlash","Vaqtinchalik tezkor xotira","Tarmoq ulash","Tasvir chiqarish"],1],
+  ["Qaysi qurilma kiritish qurilmasi?",["Monitor","Printer","Klaviatura","Karnay"],2],
+  ["SSD ning HDD dan asosiy afzalligi?",["Tezligi","Arzonligi","Og‘irligi","Hajmi doim katta"],0],
+  ["Fayl kengaytmasi .exe nimani bildiradi?",["Rasm","Bajariladigan dastur","Matn","Audio"],1],
+  ["Binar sistemada qaysi raqamlar ishlatiladi?",["0 va 1","1 va 2","0 dan 9 gacha","A va B"],0],
+  ["GPU asosan nima uchun?",["Grafika hisoblash","Internet","Tovush yozish","Sovutish"],0],
+  ["Qaysi biri bulutli xotira?",["Google Drive","BIOS","Cache","Registry"],0]]},
+ dast:{n:"Dasturlash",e:"</>",d:"JavaScript, Python, C++",q:[
+  ["JavaScript’da o‘zgaruvchi e’lon qilish kalit so‘zi?",["let","int","dim","var2"],0],
+  ["Python’da ro‘yxat qaysi qavs bilan yoziladi?",["()","[]","{}","<>"],1],
+  ["C++ qaysi turdagi til?",["Kompilyatsiya qilinadigan","Faqat brauzer","Markup","Faqat ma’lumotlar bazasi"],0],
+  ["=== operatori nimani tekshiradi?",["Qiymat va tur tengligini","Faqat tur","Atama","Katta-kichik"],0],
+  ["Sikl uchun qaysi kalit so‘z ishlatiladi?",["for","if","try","return"],0],
+  ["Massiv indeksi odatda nimadan boshlanadi?",["0","1","-1","2"],0],
+  ["Funksiya nima?",["Qayta ishlatiladigan kod bloki","Fayl turi","Xato turi","Brauzer"],0],
+  ["Git nima uchun kerak?",["Versiyalarni boshqarish","Rasm tahrirlash","Server sotib olish","Video"],0]]},
+ web:{n:"Web texnologiyalar",e:"🌐",d:"HTML, CSS, React",q:[
+  ["HTML nima?",["Markup til","Dasturlash tili","Ma’lumotlar bazasi","OS"],0],
+  ["CSS nima uchun ishlatiladi?",["Ko‘rinish va dizayn","Server","Baza","Tarmoq"],0],
+  ["React kim tomonidan yaratilgan?",["Meta (Facebook)","Google","Apple","Microsoft"],0],
+  ["Qaysi teg eng katta sarlavha?",["<h1>","<h6>","<p>","<head>"],0],
+  ["CSS’da flex nima?",["Moslashuvchan joylashuv","Rang","Shrift","Animatsiya turi"],0],
+  ["React’da holatni boshqarish hook’i?",["useState","useStyle","useData","getState"],0],
+  ["DOM nima?",["Sahifaning ob’ektli modeli","Domen nomi","Dastur","Fayl"],0],
+  ["Responsive dizayn nimani anglatadi?",["Turli ekranga moslashish","Tez yuklash","Qorong‘i rejim","Animatsiya"],0]]},
+ fun:{n:"Qiziqarli IT",e:"🤯",d:"Faktlar va tarix",q:[["Birinchi kompyuter ‘bug’i (xatosi) aslida nima edi?",["Kuya","Pashsha","Chivin","Qo‘ng‘iz"],0],["Python tili nomi nimadan olingan?",["Monty Python komediya shousidan","Ilondan","Yunon xudosidan","Muallif ismidan"],0],["2010-yilda 10 000 bitcoin evaziga nima sotib olingan?",["Ikkita pitsa","Mashina","Uy","Telefon"],0],["Linux yadrosini kim yaratgan?",["Linus Torvalds","Bill Geyts","Stiv Jobs","Mark Sukerberg"],0],["Birinchi 1 GB qattiq disk (1980) taxminan qanchalik og‘ir bo‘lgan?",["Taxminan 250 kg","1 kg","10 kg","5 tonna"],0],["Elektron pochtada ‘@’ belgisi birinchi marta qaysi yilda ishlatilgan?",["1971","1995","1985","2004"],0],["Google dastlab qanday nom bilan boshlangan?",["BackRub","Searchy","WebFind","GoGo"],0],["Birinchi veb-sayt qaysi yili ishga tushgan?",["1991","2001","1985","1999"],0]]},
+ tarm:{n:"Tarmoq va internet",e:"🛰️",d:"TCP/IP, DNS, HTTP",q:[
+  ["DNS vazifasi?",["Domen nomini IP’ga aylantirish","Fayl siqish","Parol saqlash","Video uzatish"],0],
+  ["HTTPS dagi S nimani bildiradi?",["Secure (xavfsiz)","Speed","Server","Simple"],0],
+  ["IP manzil nima?",["Qurilmaning tarmoqdagi manzili","Sayt nomi","Parol","Kabel turi"],0],
+  ["HTTP 404 nimani bildiradi?",["Sahifa topilmadi","Server xatosi","Ruxsat yo‘q","Muvaffaqiyatli"],0],
+  ["Router vazifasi?",["Tarmoqlarni bog‘lash","Tovush chiqarish","Fayl tahrirlash","Ekran"],0],
+  ["Wi‑Fi qaysi turdagi aloqa?",["Simsiz","Optik kabel","Koaksial","Elektr"],0],
+  ["TCP ning asosiy xususiyati?",["Ishonchli uzatish","Faqat video","Shifrlash yo‘q","Faqat radio"],0],
+  ["VPN nima uchun kerak?",["Xavfsiz maxfiy ulanish","Disk tozalash","Printer","Oyna"],0]]}};
+const BOTS=[["donk_uz",1250],["s1mple_fan",1180],["m0NESY",1120],["ZywOo",980],["YourName",960],["byte_wolf",900],["css_ninja",840],["pixel_aziz",790],["algo_queen",720],["null_ptr",650],["dev_sardor",520],["rustacean",410]];
+const QUOTES=["Bugun o‘rganganing — ertangi imkoniyating.","Kichik qadamlar katta natijalarga olib keladi.","Xato qilish — o‘rganishning bir qismi."];
+const mk=(a,l)=>{const o=a.slice(1).sort(()=>Math.random()-.5);return[a[0],o,o.indexOf(a[1]),l]};
+const BC={found:{n:"Foundation",e:"🧱",d:"Asoslar, algoritmlar"},front:{n:"Frontend",e:"🖌️",d:"Brauzer va UI"},back:{n:"Backend",e:"🗄️",d:"Server va baza"},java:{n:"Java",e:"☕",d:"OOP va JVM"},html:{n:"HTML",e:"📄",d:"Teglar"},css:{n:"CSS",e:"💅",d:"Dizayn"},react:{n:"React",e:"⚛️",d:"Komponentlar"},py:{n:"Python",e:"🐍",d:"Sintaksis"}};
+Object.values(BC).forEach(c=>c.q=[]);
+`found|e|Algoritm nima?|Masalani yechish qadamlari ketma-ketligi|Dasturlash tili|Kompyuter qismi|Brauzer turi
+found|e|1 baytda nechta bit bor?|8|4|16|2
+found|m|Stack qaysi tamoyilda ishlaydi?|LIFO|FIFO|Random|Priority
+found|m|Binary search murakkabligi?|O(log n)|O(n)|O(n²)|O(1)
+found|h|Qaysi tuzilmada o‘rtacha qidiruv O(1)?|Hash jadval|Bog‘langan ro‘yxat|Navbat|Stack
+front|e|Frontend dasturchi asosan nimada ishlaydi?|Brauzerda ko‘rinadigan qism|Server bazasi|OS yadrosi|Tarmoq kabeli
+front|e|JavaScript qayerda ishlaydi?|Brauzerda|Printerda|BIOS ichida|Faqat monitorda
+front|m|Event delegation nima?|Hodisani ota elementda ushlash|Hodisani o‘chirish|Hodisani serverga yuborish|Elementni klonlash
+front|m|localStorage ma’lumoti qachon o‘chadi?|Foydalanuvchi tozalaganda|Tab yopilganda|5 daqiqada|Sahifa yangilanganda
+front|h|Event loop'da qaysi avval bajariladi?|Promise (microtask)|setTimeout (macrotask)|Ikkalasi bir vaqtda|Hech biri
+back|e|Backend nima uchun kerak?|Ma’lumot va mantiqni serverda boshqarish|Tugma rangini tanlash|Rasm chizish|Shrift tanlash
+back|e|REST API da yangi ma’lumot qo‘shish metodi?|POST|GET|DELETE|HEAD
+back|m|SQL da ma’lumot olish buyrug‘i?|SELECT|INSERT|DROP|UPDATE
+back|m|JWT nima uchun ishlatiladi?|Autentifikatsiya tokeni sifatida|Rasm siqish|CSS yozish|Fayl nusxalash
+back|h|SQL injection'dan himoyalanishning asosiy usuli?|Parametrli so‘rovlar|Parolni qisqartirish|Sahifani yashirish|Cookie o‘chirish
+java|e|Java dasturi qaysi muhitda ishlaydi?|JVM|BIOS|DOM|Terminal
+java|e|Java'da butun son turi?|int|string|boolean|char[]
+java|m|Java'da sinfdan meros olish kalit so‘zi?|extends|inherits|implements|super_of
+java|m|OOP tamoyillaridan biri?|Inkapsulyatsiya|Rekursiya|Kompilyatsiya|Iteratsiya
+java|h|Java'da String immutable bo‘lishining natijasi?|O‘zgartirilganda yangi obyekt yaratiladi|Ichini o‘zgartirib bo‘ladi|Xotira ishlatmaydi|Faqat raqam saqlaydi
+html|e|Havola yaratish uchun qaysi teg?|<a>|<link>|<p>|<img>
+html|e|Rasm qo‘yish uchun qaysi teg?|<img>|<pic>|<image>|<src>
+html|m|Semantik teg qaysi?|<article>|<div>|<span>|<b>
+html|m|<meta name="viewport"> nima uchun?|Mobil ekranga moslash|Rang berish|Skript yuklash|Rasm siqish
+html|h|<script defer> nima qiladi?|HTML tahlilidan keyin bajaradi|Skriptni o‘chiradi|Faqat mobilda ishlaydi|Skriptni qayta yuklaydi
+css|e|Matn rangini o‘zgartiruvchi xossa?|color|font-style|text-size|paint
+css|e|Moslashuvchan joylashuv uchun display qiymati?|flex|hidden|float|static
+css|m|z-index nimani boshqaradi?|Elementlarning ustma-ust tartibini|Shrift hajmini|Kenglikni|Shaffoflikni
+css|m|1fr birligi qayerda ishlatiladi?|Grid'da|Faqat rasmda|Faqat shriftda|Animatsiyada
+css|h|Specificity bo‘yicha qaysi eng kuchli?|inline style|class selektor|tag selektor|universal (*) selektor
+react|e|React qaysi tilda yoziladi?|JavaScript|Python|Java|C++
+react|e|Komponent odatda nimani qaytaradi?|JSX|SQL|CSV|PDF
+react|m|useEffect nima uchun?|Yon ta’sirlar (side effects) uchun|Faqat stil uchun|Faqat massiv uchun|Router uchun
+react|m|Ro‘yxat elementlariga nima beriladi?|key|loopId|refName|index-style
+react|h|Props va state farqi?|Props tashqaridan keladi, state komponent ichida|Farqi yo‘q|State tashqaridan keladi|Props faqat sonlar uchun
+py|e|Python'da izoh qaysi belgi bilan boshlanadi?|#|//|--|/*
+py|e|Python'da ro‘yxat uzunligini topish?|len()|size()|count()|length()
+py|m|Python'da lug‘at (dict) qanday yoziladi?|{"a": 1}|[1, 2]|(1, 2)|<a=1>
+py|m|Ro‘yxatni qisqa sikl bilan yaratish usuli?|List comprehension|Decorator|Generator sinf|Lambda sinf
+py|h|Python'da GIL nima?|Bir vaqtda bitta thread bytecode bajaradi|Grafik kutubxona|Xato turi|Paket menejeri`.trim().split("\n").forEach(l=>{const p=l.split("|");BC[p[0]].q.push(mk(p.slice(2),p[1]))});
+Object.assign(CATS,BC);
+function genQ(lv){const r=n=>Math.random()*n|0,L=lv==="all"||!lv?"emh"[r(3)]:lv,t=r(4);
+ if(t===0){const n=3+r(L==="h"?60:L==="m"?25:12);return mk(["Binar "+n.toString(2)+" o‘nlik sistemada necha?",String(n),String(n+1),String(n-1),String(n*2)],L)}
+ if(t===1){const k=2+r(7);return mk(["Python: print(2**"+k+") nima chiqaradi?",String(2**k),String(2**k+1),String(2**k-1),String(2**k*2)],L)}
+ if(t===2){const a=1+r(9),b=1+r(9);return mk(["JavaScript: "+a+" + \""+b+"\" natijasi?",a+""+b,String(a+b),"NaN","Xato"],L)}
+ const H=[[200,"OK"],[301,"Ko‘chirilgan"],[403,"Ruxsat yo‘q"],[404,"Topilmadi"],[500,"Server xatosi"]],h=H[r(5)];return mk(["HTTP "+h[0]+" nimani bildiradi?",h[1],...H.filter(x=>x!==h).slice(0,3).map(x=>x[1])],L)}
+let S={name:"Muhammadsaid",xp:320,score:320,streak:3,last:"",hist:[],daily:{}, theme:"dark"};
+try{const r=localStorage.getItem("itarena");if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+const save=()=>{try{localStorage.setItem("itarena",JSON.stringify(S))}catch(e){}syncRemote()};
+const $=s=>document.querySelector(s),today=()=>new Date().toISOString().slice(0,10);
+const lvl=()=>Math.floor(S.xp/500)+1,xpIn=()=>S.xp%500;
+const doneToday=()=>S.daily.d===today()?S.daily.n:0;
+const dateUz=()=>{const m=["Yanvar","Fevral","Mart","Aprel","May","Iyun","Iyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr"],d=new Date();return d.getDate()+" "+m[d.getMonth()]+", "+d.getFullYear()};
+const wkn=()=>Math.floor(Date.now()/6048e5);const wk=()=>S.hist.filter(h=>Date.now()-new Date(h.d)<=7*864e5).reduce((a,h)=>a+h.c*10,0)+(S.dwk===wkn()?S.duelW||0:0);
+const board=(m)=>{const w=m==="w",src=w?LBW:LB;if(S.uid&&src&&src.length){const a=src.map(u=>({...u,me:u.id===S.uid}));if(!a.some(u=>u.me))a.push({n:S.name,s:w?wk():S.score,l:lvl(),me:1});return a.sort((x,y)=>y.s-x.s).map((u,i)=>({...u,r:i+1}))}const a=BOTS.map(b=>({n:b[0],s:w?(b[1]*7)%310+40:b[1],l:Math.floor(b[1]/110)+1,me:0}));a.push({n:S.name,s:w?wk():S.score,l:lvl(),me:1});return a.sort((x,y)=>y.s-x.s).map((u,i)=>({...u,r:i+1}))};
+const NAV=[["home","🏠","Bosh sahifa"],["quiz","📝","Kunlik test"],["duel","⚔️","Duel"],["fr","👥","Do‘stlar"],["shop","🛒","Do‘kon"],["rank","🏆","Reyting"],["more","🧩","Ko‘proq"],["stat","📊","Statistika"],["set","⚙️","Sozlamalar"]];
+let view="home",Q=null;
+function toast(t){const e=document.createElement("div");e.className="toast";e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2400)}
+function go(v,cat){view=v;Q=null;clearInterval(QT);if(v!=="duel"){clearInterval(DT);D=null}if(v==="quiz"&&cat)startQuiz(cat);render();window.scrollTo(0,0)}
+function shell(){
+ $("#side").innerHTML=`<div class="logo"><svg width="38" height="38" viewBox="0 0 40 40"><path d="M20 3 38 36H2z" fill="#2f6bff"/><path d="M20 14 28 30H12z" fill="#050b1a"/></svg><div>IT ARENA<small>Bilim — kuch!</small></div></div>`+
+ NAV.map(n=>`<button class="nav ${view===n[0]?"on":""}" data-v="${n[0]}"><span>${n[1]}</span>${n[2]}</button>`).join("")+
+ `<div class="quote">“Kichik qadamlar katta natijalarga olib keladi.”<br>— IT Arena</div>`;
+ $("#side").querySelectorAll(".nav").forEach(b=>b.onclick=()=>go(b.dataset.v));
+ $("#ttl").textContent=(NAV.find(n=>n[0]===view)||SUB.find(n=>n[0]===view)||[0,0,"Ko‘proq"])[2];const bn=getNotes().length;$("#bl").textContent="🔔"+(bn?" "+bn:"");
+ $("#tav").textContent=S.av||S.name[0].toUpperCase();$("#tnm").textContent=S.name;
+ document.documentElement.dataset.theme=S.theme;$("#th").textContent=S.theme==="dark"?"☀":"🌙";
+}
+$("#th").onclick=()=>{S.theme=S.theme==="dark"?"light":"dark";save();render()};
+$("#bl").onclick=()=>go("notes");
+function home(){
+ const n=doneToday(),rows=board(),me=rows.find(r=>r.me),top=rows.slice(0,5);
+ const show=me.r>5?top.concat(me):top;
+ return `<div class="grid"><div style="display:grid;gap:20px">
+ <section class="card hero"><div class="code">&lt;/&gt;</div><h1>IT bilimlaringni sinab ko‘r, <em>o‘sib bor!</em></h1><p>Har kuni 10 ta qiziqarli test. Ball to‘pla, reytingda oldinga chiq va IT olamida o‘z o‘rningni top!</p><div class="tags"><span>🗓 10 ta test har kuni</span><span>⭐ XP va darajalar</span><span>🏅 Reyting jadvali</span><span>🇺🇿 O‘zbek tilida</span></div><button class="btn" data-go="quiz">Bugungi testni boshlash →</button></section>
+ <section class="card"><div class="row"><h2>Bugungi test</h2><small style="color:var(--mut)">${dateUz()}</small></div>
+  <div class="tcard"><div style="font-size:60px">🧩</div><div style="flex:1;min-width:200px"><span class="badge">Kundalik</span><h3 style="margin:6px 0">IT Asoslari</h3><small style="color:var(--mut)">10 ta savol • 5 daqiqa • +50 XP</small><p style="color:var(--mut);margin:6px 0">Bugungi testda IT sohasining asosiy tushunchalarini sinab ko‘ring.</p><button class="btn" data-go="quiz" data-c="asos" ${n>=10?"disabled":""}>${n>=10?"Bugun bajarildi ✓":"Testni boshlash →"}</button></div>
+  <div class="ring" style="--p:${n*10}%"><div><span><b>${10-Math.min(n,10)}</b>ta savol</span></div></div></div></section>
+ <section class="card"><div class="row"><h2>Boshqa yo‘nalishlar</h2></div><div class="dirs">${Object.entries(CATS).map(([k,c])=>`<button class="dir" data-go="quiz" data-c="${k}"><div class="e">${c.e}</div><b>${c.n}</b><small>${c.d}</small><br><small style="color:var(--pri)">${c.q.length} ta test →</small></button>`).join("")}</div></section></div>
+ <div style="display:grid;gap:20px;align-content:start">
+ <section class="card"><div class="me"><div class="av" style="width:64px;height:64px;font-size:26px">${S.av||S.name[0].toUpperCase()}</div><div style="flex:1"><b style="font-size:18px">${S.name}</b><div class="row"><small style="color:var(--mut)">Level ${lvl()}</small><small style="color:var(--mut)">${xpIn()} / 500 XP</small></div><div class="bar"><i style="width:${xpIn()/5}%"></i></div></div></div>
+  <div class="stats"><div class="st"><b>🔥 ${S.streak}</b>Kunlik seriya</div><div class="st"><b>⭐ ${S.score}</b>Jami ball</div><div class="st"><b>🏅 ${me.r}</b>O‘rin</div></div>
+  <div class="st" style="padding:16px;text-align:left">🎯 “${QUOTES[new Date().getDate()%3]}”</div></section>
+ ${giftCard()}<section class="card"><div class="row"><h3>🏆 Top o‘yinchilar</h3><button class="link" data-go="rank">Barchasi</button></div>
+  <div class="wrap"><table><tr><th>#</th><th>Foydalanuvchi</th><th>Ball</th><th>Lv</th></tr>${show.map(u=>`<tr class="${u.me?"me":""}"><td>${u.r}</td><td>${u.n}</td><td>${u.s}</td><td>${u.l}</td></tr>`).join("")}</table></div></section>
+ <section class="card"><small style="color:var(--mut)">Bugungi maqsad</small><div class="row"><b>10 ta testni yakunlash</b><span>${Math.min(n,10)} / 10</span></div><div class="bar" style="margin:8px 0"><i style="width:${Math.min(n,10)*10}%"></i></div><b>${n>=10?"Maqsad bajarildi! 🎉":"Sen buni uddalaysan! 🚀"}</b></section></div></div>`;
+}
+function startQuiz(k){const c=CATS[k];const qs=[...c.q].sort(()=>Math.random()-.5).slice(0,10);Q={k,qs,i:0,ok:0,pick:null,end:false,t:15};qtick()}
+function quiz(){
+ if(!Q)return `<section class="card q"><h2>Yo‘nalishni tanlang</h2><div class="dirs">${Object.entries(CATS).map(([k,c])=>`<button class="dir" data-go="quiz" data-c="${k}"><div class="e">${c.e}</div><b>${c.n}</b><small>${c.q.length} ta savol</small></button>`).join("")}</div></section>`;
+ if(Q.end){const g=Q.ok/Q.qs.length;return `<section class="card q" style="text-align:center"><div style="font-size:56px">${g>=.8?"🏆":g>=.5?"👏":"💪"}</div><h2>${Q.ok} / ${Q.qs.length} to‘g‘ri javob</h2><p style="color:var(--mut)">+${Q.ok*10} ball, +${Q.xp} XP qo‘lga kiritildi</p><button class="btn" data-go="quiz" data-c="${Q.k}">Qayta urinish</button> <button class="btn sec" data-go="home">Bosh sahifa</button></section>`}
+ const q=Q.qs[Q.i];
+ return `<section class="card q"><div class="row"><small style="color:var(--mut)">${(CATS[Q.k]||{n:"Xatolar daftari"}).n}</small><small>${Q.i+1} / ${Q.qs.length}</small><b id="qt" style="color:var(--warn)">⏱ ${Q.t} s</b></div><div class="bar" style="margin:10px 0 20px"><i style="width:${Q.i/Q.qs.length*100}%"></i></div><h2>${q[0].replace(/</g,"&lt;")}</h2>${q[1].map((o,j)=>`<button class="opt ${Q.pick!==null?(j===q[2]?"ok":j===Q.pick?"no":""):""}" data-o="${j}" ${Q.pick!==null?"disabled":""}>${o.replace(/</g,"&lt;")}</button>`).join("")}${Q.pick!==null&&Q.pick!==q[2]?`<p class="st" style="text-align:left;margin:10px 0">${API.explain(q,Q.pick)}</p>`:""}${Q.pick!==null?`<button class="btn" id="nx">${Q.i+1<Q.qs.length?"Keyingi savol →":"Natijani ko‘rish"}</button>`:""}</section>`;
+}
+function finish(){
+ const t=today();let xp=Q.ok*5;
+ if(S.daily.d!==t)S.daily={d:t,n:0};
+ const before=S.daily.n;S.daily.n=Math.min(10,S.daily.n+Q.qs.length);
+ if(before<10&&S.daily.n>=10){xp+=50;toast("Kunlik maqsad bajarildi! +50 XP")}
+ if(S.last!==t){const y=new Date(Date.now()-864e5).toISOString().slice(0,10);S.streak=S.last===y?S.streak+1:1;S.last=t}
+ S.xp+=xp;S.score+=Q.ok*10;Q.xp=xp;Q.end=true;
+ S.hist.push({d:t,k:Q.k,c:Q.ok,n:Q.qs.length});S.hist=S.hist.slice(-200);if(SB&&S.uid)SB.from("results").insert({user_id:S.uid,category:Q.k,correct:Q.ok,total:Q.qs.length}).then(()=>loadLB(),()=>{});qp("test",1);checkBadges();
+}
+const esc=s=>String(s).replace(/</g,"&lt;");
+const FREE=3,freeLeft=()=>S.fd===today()?Math.max(0,FREE-S.fu):FREE,games=()=>S.prem?"∞":freeLeft()+(S.cards||0);
+function useGame(){if(S.prem)return true;if(freeLeft()>0){if(S.fd!==today()){S.fd=today();S.fu=0}S.fu++}else if(S.cards>0)S.cards--;else return false;save();return true}
+const myCode=()=>"ITA-"+[...S.name].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7).toString(36).toUpperCase().slice(0,5);
+let D=null,DT=null,DM={mode:"1v1",cat:"all",lv:"all",fr:""};const OPP=["byte_wolf","css_ninja","pixel_aziz","algo_queen","null_ptr","dev_sardor"];
+function pool(){let a=(DM.cat==="all"?Object.values(CATS):[CATS[DM.cat]]).flatMap(c=>c.q);if(DM.lv!=="all")a=a.filter(q=>(q[3]||"m")===DM.lv);const o=a.sort(()=>Math.random()-.5).slice(0,4);while(o.length<5)o.push(genQ(DM.lv));return o.sort(()=>Math.random()-.5)}
+function duelStart(){if(!useGame()){toast("O‘yin tugadi. Do‘kondan kartochka oling");go("shop");return}
+ const t=DM.mode==="2v2",o=OPP.filter(x=>x!==DM.fr).sort(()=>Math.random()-.5);
+ D={ph:"find",i:0,me:0,mate:0,op:0,pick:null,t:10,t2:t,n:t?o[0]+" & "+o[1]:(DM.fr||o[0]),m:t?(DM.fr||o[2]):""};
+ render();setTimeout(()=>{if(!D)return;D.qs=pool();D.ph="play";tick();render()},2000)}
+function tick(){clearInterval(DT);D.t=10;D.pick=null;DT=setInterval(()=>{if(!D||D.ph!=="play")return clearInterval(DT);D.t--;const e=$("#tm");if(e)e.textContent=D.t+" s";if(D.t<=0)duelAns(-1)},1000)}
+function duelAns(j){if(!D||D.pick!==null)return;clearInterval(DT);D.pick=j;const q=D.qs[D.i],b=()=>10+Math.floor(Math.random()*8),h=p=>Math.random()<p;onAnswer(q,j===q[2]);if(j===q[2])D.me+=10+D.t;D.bc=0;D.mc=0;
+ if(D.t2){if(h(.7)){D.mate+=b();D.mc=1}for(let k=0;k<2;k++)if(h(.55)){D.op+=b();D.bc++}}else if(h(.65)){D.op+=b();D.bc=1}
+ render();setTimeout(()=>{if(!D)return;if(D.i+1<D.qs.length){D.i++;tick();render()}else duelEnd()},1300)}
+function duelEnd(){clearInterval(DT);const tot=D.me+D.mate,w=tot>D.op,pts=w?D.me+(D.t2?15:0):Math.round(D.me/2),xp=w?(D.t2?50:40):10;S.xp+=xp;S.score+=pts;if(S.dwk!==wkn()){S.dwk=wkn();S.duelW=0}S.duelW+=pts;S.duel=S.duel||{w:0,l:0};w?S.duel.w++:S.duel.l++;Object.assign(D,{ph:"end",w,pts,xp,tot});qp("duel",1);checkBadges();render()}
+function duel(){
+ const r=S.duel||{w:0,l:0},sel=(id,l,v,arr)=>`<label>${l}</label><select id="${id}">${arr.map(x=>`<option value="${x[0]}" ${v===x[0]?"selected":""}>${x[1]}</option>`).join("")}</select>`;
+ if(!D)return `<section class="card q"><div style="text-align:center"><div style="font-size:54px">⚔️</div><h2>Duel</h2></div><div class="stats"><div class="st"><b>${games()}</b>Mavjud o‘yin</div><div class="st"><b>${freeLeft()}/3</b>Bepul bugun</div><div class="st"><b>${S.cards||0}</b>Kartochka</div></div><p style="color:var(--mut);text-align:center">G‘alaba ${r.w} • Mag‘lubiyat ${r.l}</p>${sel("dm","Rejim",DM.mode,[["1v1","1v1"],["2v2","2v2 (jamoaviy)"]])}${sel("dc","Yo‘nalish",DM.cat,[["all","Aralash"],...Object.entries(CATS).map(([k,c])=>[k,c.n])])}${sel("dl","Daraja",DM.lv,[["all","Aralash"],["e","Oson"],["m","O‘rtacha"],["h","Qiyin"]])}${sel("df",DM.mode==="2v2"?"Jamoadosh (do‘st)":"Raqib (do‘st)",DM.fr,[["","Tasodifiy"],...(S.fr||[]).map(f=>[esc(f),esc(f)])])}<button class="btn" id="dq" style="width:100%">Boshlash</button></section>`;
+ if(D.ph==="find")return `<section class="card q" style="text-align:center"><div style="font-size:50px">🔎</div><h2>${D.t2?"Jamoa va raqiblar":"Raqib"} qidirilmoqda...</h2></section>`;
+ if(D.ph==="end")return `<section class="card q" style="text-align:center"><div style="font-size:56px">${D.w?"🏆":"💪"}</div><h2>${D.w?"G‘alaba!":"Bu safar yutqazding"}</h2><p style="color:var(--mut)">${D.t2?"Jamoa":"Sen"} ${D.tot} : ${D.op} ${esc(D.n)}</p><p>+${D.pts} ball, +${D.xp} XP • Qolgan o‘yin: ${games()}</p><button class="btn" id="dq">Yana o‘ynash</button> <button class="btn sec" data-go="duel">Sozlamalar</button></section>`;
+ const q=D.qs[D.i];
+ return `<section class="card q"><div class="row"><b>Sen ${D.me}${D.t2?" + "+esc(D.m)+" "+D.mate:""}</b><span id="tm" style="color:var(--warn);font-weight:800">${D.t} s</span><b>${esc(D.n)} ${D.op}</b></div><div class="bar" style="margin:10px 0"><i style="width:${D.i/5*100}%"></i></div><small style="color:var(--mut)">Savol ${D.i+1} / 5</small><h2>${esc(q[0])}</h2>${q[1].map((o,j)=>`<button class="opt ${D.pick!==null?(j===q[2]?"ok":j===D.pick?"no":""):""}" data-d="${j}" ${D.pick!==null?"disabled":""}>${esc(o)}</button>`).join("")}${D.pick!==null?`<p style="color:var(--mut)">${D.t2?"Jamoadosh "+(D.mc?"✓":"✗")+" • Raqiblar "+D.bc+"/2":"Raqib "+(D.bc?"✓":"✗")}</p>`:""}</section>`;
+}
+function friends(){return `<div class="grid"><section class="card"><h2>👥 Do‘stlar</h2><div class="row" style="gap:8px;flex-wrap:nowrap"><input type="text" id="fn" placeholder="Do‘st nomi" maxlength="20"><button class="btn" id="fa" style="margin:0">Qo‘shish</button></div><div style="margin-top:14px">${(S.fr||[]).map((f,i)=>`<div class="row" style="padding:10px 0;border-top:1px solid var(--line)"><span><b>${esc(f)}</b> <small style="color:var(--acc)">● online</small></span><span><button class="btn sec" data-pf="${i}" style="margin:0">⚔️ O‘ynash</button> <button class="btn sec" data-rf="${i}" style="margin:0">✕</button></span></div>`).join("")||`<p style="color:var(--mut)">Hali do‘st yo‘q. Ism yozib qo‘shing yoki taklif havolasini yuboring.</p>`}</div></section><section class="card"><h3>📨 Do‘st taklif qilish</h3><p style="color:var(--mut)">Taklif kodi: <b style="color:var(--tx)">${myCode()}</b></p><button class="btn" id="ci">Havolani nusxalash</button><p style="color:var(--mut);font-size:13px">Hozircha do‘stlar demo rejimda o‘ynaydi (haqiqiy onlayn o‘yin backend bilan keladi).</p></section></div>`}
+function shop(){return `<div class="grid"><section class="card"><h2>🛒 Do‘kon</h2><p style="color:var(--mut)">Har kuni 3 ta bepul o‘yin. Ko‘proq o‘ynash uchun kartochka oling.</p><div class="dirs">${[[5,5000],[10,10000]].map(p=>`<div class="dir"><div class="e">🎟️</div><b>${p[0]} ta o‘yin kartochkasi</b><small>${p[1].toLocaleString("ru-RU")} so‘m</small><br><button class="btn" data-buy="${p[0]}" style="margin-top:10px;width:100%">Sotib olish</button></div>`).join("")}</div><small style="color:var(--mut)">Demo to‘lov: haqiqiy pul yechilmaydi.</small></section><section class="card"><h3>Hisobingiz</h3><div class="stats"><div class="st"><b>${freeLeft()}/3</b>Bepul</div><div class="st"><b>${S.cards||0}</b>Kartochka</div><div class="st"><b>${games()}</b>Jami</div></div></section></div>`}
+function giftCard(){const g=S.gd===today();return `<section class="card"><div class="row"><b>🎁 Kunlik sovg‘a</b><small style="color:var(--mut)">🎟️ ${games()} ta o‘yin</small></div><button class="btn" data-gift="1" style="width:100%" ${g?"disabled":""}>${g?"Bugun olingan ✓":"Sovg‘ani ochish"}</button><button class="btn sec" data-go="shop" style="width:100%;margin-top:8px">🛒 Do‘kon</button></section>`}
+function openGift(){if(S.gd===today())return;S.gd=today();const r=[{x:30},{x:50},{x:80},{c:1}][Math.random()*4|0];if(r.c){S.cards=(S.cards||0)+1;toast("🎁 +1 o‘yin kartochkasi!")}else{S.xp+=r.x;toast("🎁 +"+r.x+" XP")}save();render()}
+function inviteCopy(){const l=location.href.split("#")[0]+"#"+myCode();try{navigator.clipboard.writeText(l).then(()=>toast("Havola nusxalandi"),()=>prompt("Nusxalang:",l))}catch(e){prompt("Nusxalang:",l)}}
+const SUB=[["quest","🎯","Kunlik topshiriqlar"],["league","🥇","Ligalar"],["team","🛡️","Jamoalar"],["road","🗺️","Yo‘l xaritasi"],["mist","📓","Xatolar daftari"],["code","💻","Kod topshiriq"],["cert","🎓","Sertifikat"],["skin","🎭","Avatar"],["prem","💎","Premium"],["spon","🏢","Homiylik musobaqalari"],["teach","👩‍🏫","O‘qituvchi paneli"],["admin","🛠️","Admin panel"],["notes","🔔","Bildirishnomalar"]];
+/* ===== BACKEND SEAM: Supabase ulanganda faqat shu API obyekti va save() almashtiriladi ===== */
+const API={
+ explain(q,p){return `🤖 AI mentor: to‘g‘ri javob — «${esc(q[1][q[2]])}». <small style="color:var(--mut)">(Backend ulangach, Claude shu yerda batafsil tushuntiradi)</small>`},
+ addQuestion(c){S.custom=S.custom||[];S.custom.push(c);CATS[c[0]].q.push(mk(c.slice(2),c[1]));save()},
+ getTeams(){return [["Tatu Coders",4200],["IT Park",3900],["Samarqand Devs",3100],["Dev Girls",2800]]},
+ getContests(){return [["Epam Cup","🏆 $200 sovrin","7 kun qoldi"],["IT Park Challenge","💻 Noutbuk","14 kun qoldi"],["UzInfocom Hack","💼 Ish taklifi","3 kun qoldi"]]},
+ getClass(){return BOTS.slice(5).map(b=>[b[0],b[1],50+b[1]%45])}
+};
+const QD=[["test","1 ta test yech",1],["duel","2 ta duel o‘yna",2],["correct","10 ta to‘g‘ri javob ber",10]],cnt=k=>S.hist.filter(h=>h.k===k).length;
+const LG=[["Bronza","🥉",0],["Kumush","🥈",500],["Oltin","🥇",1500],["Olmos","💎",3000]],AV=[["😎",1],["🧑‍💻",2],["🦊",3],["🐉",5],["👑",8]];
+const TR=[["Frontend","🖌️",["html","css","front","react"]],["Backend","🗄️",["found","py","java","back"]]];
+const CT=[["sum(a,b): ikki sonni qo‘shing","function sum(a,b){\n  \n}","sum",[[[1,2],3],[[5,7],12],[[-1,1],0]]],["isEven(n): juft bo‘lsa true qaytaring","function isEven(n){\n  \n}","isEven",[[[2],true],[[7],false]]],["reverse(s): satrni teskari qaytaring","function reverse(s){\n  \n}","reverse",[[["abc"],"cba"],[[""],""]]]];
+let CI=0,CR="",CC={};
+const card=(h,b)=>`<section class="card"><button class="link" data-go="more">← Ko‘proq</button><h2>${h}</h2>${b}</section>`;
+const rw=x=>`<div class="row" style="padding:10px 0;border-top:1px solid var(--line)">${x}</div>`;
+function qp(k,n){if(!S.qs||S.qs.d!==today())S.qs={d:today(),p:{},c:[]};S.qs.p[k]=(S.qs.p[k]||0)+n}
+function onAnswer(q,ok){if(ok)qp("correct",1);else{S.mist=S.mist||[];if(!S.mist.some(m=>m[0]===q[0]))S.mist=[q.slice(0,3),...S.mist].slice(0,40)}if(ok&&Q&&Q.k==="mist")S.mist=(S.mist||[]).filter(m=>m[0]!==q[0]);save()}
+function getNotes(){const n=[];if(S.streak>0&&S.last!==today())n.push("🔥 Seriyang uzilmoqda! Bugun test yech.");if(S.gd!==today())n.push("🎁 Kunlik sovg‘a kutmoqda.");if(S.qs&&S.qs.d===today()&&QD.some(([k,,m])=>(S.qs.p[k]||0)>=m&&!S.qs.c.includes(k)))n.push("🎯 Topshiriq mukofotini olishing mumkin.");if(games()===0)n.push("🎟️ O‘yinlar tugadi. Do‘kondan kartochka oling.");return n}
+const notes=()=>card("🔔 Bildirishnomalar",getNotes().map(x=>`<div class="st" style="text-align:left;margin:8px 0;padding:14px">${x}</div>`).join("")||`<p style="color:var(--mut)">Yangi xabar yo‘q.</p>`);
+const more=()=>`<section class="card"><h2>🧩 Ko‘proq</h2><div class="dirs">${SUB.map(x=>`<button class="dir" data-go="${x[0]}"><div class="e">${x[1]}</div><b>${x[2]}</b></button>`).join("")}</div></section>`;
+function quest(){qp("x",0);return card("🎯 Kunlik topshiriqlar",QD.map(([k,t,n])=>{const p=Math.min(n,S.qs.p[k]||0),c=S.qs.c.includes(k),ok=p>=n&&!c;return rw(`<span>${t}<div class="bar" style="width:150px;margin-top:6px"><i style="width:${p/n*100}%"></i></div></span><button class="btn ${ok?"":"sec"}" data-qc="${k}" style="margin:0" ${ok?"":"disabled"}>${c?"Olindi ✓":ok?"+30 XP olish":p+"/"+n}</button>`)}).join(""))}
+function league(){const i=LG.reduce((a,l,j)=>S.xp>=l[2]?j:a,0),l=LG[i],n=LG[i+1];return card("🥇 Ligalar",`<div style="text-align:center;font-size:56px">${l[1]}</div><h3 style="text-align:center">${l[0]} ligasi</h3>${n?`<div class="bar"><i style="width:${(S.xp-l[2])/(n[2]-l[2])*100}%"></i></div><p style="color:var(--mut)">${n[0]} ligasigacha ${n[2]-S.xp} XP</p>`:"<p>Eng yuqori liga!</p>"}<div class="dirs">${LG.map(x=>`<div class="dir" style="${x===l?"border-color:var(--acc)":"opacity:.6"}"><div class="e">${x[1]}</div><b>${x[0]}</b><small>${x[2]}+ XP</small></div>`).join("")}</div>`)}
+function team(){return card("🛡️ Jamoalar",API.getTeams().map(t=>({n:t[0],s:t[1]+(S.team===t[0]?S.score:0)})).sort((a,b)=>b.s-a.s).map((t,i)=>rw(`<span>${i+1}. <b>${t.n}</b> • ${t.s} ball</span><button class="btn ${S.team===t.n?"":"sec"}" data-jt="${t.n}" style="margin:0">${S.team===t.n?"A’zosiz ✓":"Qo‘shilish"}</button>`)).join(""))}
+const road=()=>card("🗺️ Yo‘l xaritasi",TR.map(t=>`<h3>${t[1]} ${t[0]}</h3>`+t[2].map((k,i)=>{const p=Math.min(100,cnt(k)*34);return `<button class="dir" data-go="quiz" data-c="${k}" style="width:100%;margin-bottom:8px"><div class="row"><b>${i+1}. ${CATS[k].n}</b><small>${p}%</small></div><div class="bar" style="margin-top:8px"><i style="width:${p}%"></i></div></button>`}).join("")).join(""));
+const mist=()=>card("📓 Xatolar daftari",(S.mist||[]).length?`<p style="color:var(--mut)">${S.mist.length} ta savolda adashgansan.</p><button class="btn" id="mp">Mashq qilish</button>`:`<p style="color:var(--mut)">Hozircha xato yo‘q. Zo‘r! 🎉</p>`);
+function runCode(){const t=CT[CI];CC[CI]=$("#ce").value;try{const f=new Function(CC[CI]+";return "+t[2])(),bad=t[3].filter(([a,e])=>f(...a)!==e);if(bad.length)CR="❌ "+bad.length+" ta test o‘tmadi";else{CR="✅ Hammasi to‘g‘ri!";S.cdone=S.cdone||[];if(!S.cdone.includes(CI)){S.cdone.push(CI);S.xp+=40;CR+=" +40 XP";save()}}}catch(e){CR="⚠️ "+e.message}render()}
+const code=()=>card("💻 Kod topshiriq",`<div class="row" style="gap:6px;justify-content:flex-start">${CT.map((x,i)=>`<button class="btn ${i===CI?"":"sec"}" data-ct="${i}" style="margin:0">${i+1}${(S.cdone||[]).includes(i)?" ✓":""}</button>`).join("")}</div><p>${CT[CI][0]}</p><textarea id="ce" spellcheck="false" style="width:100%;height:150px;background:var(--bg2);color:var(--tx);border:1px solid var(--line);border-radius:10px;padding:10px;font:14px Consolas,monospace">${esc(CC[CI]||CT[CI][1])}</textarea><button class="btn" id="cr">Ishga tushirish</button><p>${CR}</p>`);
+function cert(){const ok=Object.keys(CATS).filter(k=>cnt(k)>=3);return card("🎓 Sertifikat",ok.length?ok.map(k=>`<div class="st" style="padding:20px;margin:10px 0;border:2px solid var(--warn)"><b style="font-size:13px;color:var(--warn)">IT ARENA SERTIFIKATI</b><b style="font-size:22px">${esc(S.name)}</b>${CATS[k].n} yo‘nalishini muvaffaqiyatli tugatdi<br><small>${today()} • ID: ITA-${k.toUpperCase()}-${myCode().slice(4)}</small></div>`).join("")+`<small style="color:var(--mut)">Skrinshot oling yoki chop eting (Ctrl+P).</small>`:`<p style="color:var(--mut)">Biror yo‘nalishda 3 ta test yechsang, sertifikat shu yerda paydo bo‘ladi.</p>`)}
+const skin=()=>card("🎭 Avatar",`<p style="color:var(--mut)">Level ${lvl()}. Yuqori level — yangi avatar.</p><div class="dirs">${AV.map(a=>`<button class="dir" data-av="${a[0]}" style="${lvl()<a[1]?"opacity:.4":""}" ${lvl()<a[1]?"disabled":""}><div class="e">${a[0]}</div><b>${lvl()<a[1]?"Level "+a[1]:S.av===a[0]?"Tanlangan ✓":"Tanlash"}</b></button>`).join("")}</div>`);
+const prem=()=>card("💎 Premium",`<div class="st" style="padding:20px;text-align:left"><b style="font-size:22px">29 000 so‘m / oy</b>✓ Cheksiz duel<br>✓ Cheksiz AI mentor<br>✓ Kengaytirilgan statistika<br>✓ Maxsus avatar va nishonlar</div>${S.prem?`<p>Premium faol ✓</p><button class="btn sec" id="pm">Bekor qilish</button>`:`<button class="btn" id="pm">Premium olish (demo)</button>`}`);
+const spon=()=>card("🏢 Homiylik musobaqalari",API.getContests().map(c=>{const j=(S.sp||[]).includes(c[0]);return rw(`<span><b>${c[0]}</b><br><small style="color:var(--mut)">${c[1]} • ${c[2]}</small></span><button class="btn ${j?"":"sec"}" data-sp="${c[0]}" style="margin:0">${j?"Qatnashyapsiz ✓":"Qatnashish"}</button>`)}).join(""));
+function teach(){const R=API.getClass();return card("👩‍🏫 O‘qituvchi paneli",`<p style="color:var(--mut)">Demo guruh: IT-101. O‘rtacha ball: ${Math.round(R.reduce((a,r)=>a+r[1],0)/R.length)}</p><div class="wrap"><table><tr><th>O‘quvchi</th><th>Ball</th><th>To‘g‘rilik</th></tr>${R.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}%</td></tr>`).join("")}</table></div>`)}
+const admin=()=>card("🛠️ Admin panel",`<p style="color:var(--mut)">Savol qo‘shish (demo: faqat shu brauzerda saqlanadi).</p><select id="ac">${Object.entries(BC).map(([k,c])=>`<option value="${k}">${c.n}</option>`).join("")}</select><select id="al"><option value="e">Oson</option><option value="m">O‘rtacha</option><option value="h">Qiyin</option></select>${["Savol","To‘g‘ri javob","Xato 1","Xato 2","Xato 3"].map((p,i)=>`<input type="text" id="a${i}" placeholder="${p}" style="margin-bottom:8px">`).join("")}<button class="btn" id="as">Saqlash</button><p style="color:var(--mut)">Qo‘shilgan savollar: ${(S.custom||[]).length}</p>`);
+let RM="a";
+function rank(){return `<section class="card"><div class="row"><h2>🏆 Reyting</h2><div><button class="btn ${RM==="w"?"":"sec"}" data-rm="w" style="margin:0">Haftalik</button> <button class="btn ${RM==="a"?"":"sec"}" data-rm="a" style="margin:0">Umumiy</button></div></div>${RM==="w"?weeklyCard():""}<div class="wrap"><table><tr><th>#</th><th>Foydalanuvchi</th><th>Ball</th><th>Level</th></tr>${board(RM).map(u=>`<tr class="${u.me?"me":""}"><td>${u.r<=3?["🥇","🥈","🥉"][u.r-1]:u.r}</td><td>${u.n}</td><td>${u.s}</td><td>${u.l}</td></tr>`).join("")}</table></div></section>`}
+let QT=null;
+function qtick(){clearInterval(QT);if(!Q||Q.end)return;Q.t=15;Q.pick=null;QT=setInterval(()=>{if(!Q||Q.end||view!=="quiz"||Q.pick!==null)return clearInterval(QT);Q.t--;const e=$("#qt");if(e)e.textContent="⏱ "+Q.t+" s";if(Q.t<=0){clearInterval(QT);Q.pick=-1;onAnswer(Q.qs[Q.i],false);render()}},1000)}
+const BADGES=[["first","🥇","Birinchi qadam","Birinchi testni yakunla",()=>S.hist.length>=1],["perf","💯","Mukammal","Testda hamma javob to‘g‘ri",()=>S.hist.some(h=>h.c===h.n&&h.n>=5)],["fire","🔥","Olovli seriya","5 kunlik seriya",()=>S.streak>=5],["duel","⚔️","Duelchi","1v1 da g‘alaba qozon",()=>(S.duel||{}).w>=1],["brain","🧠","Bilimdon","50 ta to‘g‘ri javob",()=>S.hist.reduce((a,h)=>a+h.c,0)>=50],["fun","🤯","Qiziqarli IT","Qiziqarli IT testini yech",()=>S.hist.some(h=>h.k==="fun")],["all","🌍","Hammasini sina","Barcha 5 yo‘nalishni sina",()=>new Set(S.hist.map(h=>h.k)).size>=5],["lv","🚀","Level 5","5-levelga yet",()=>lvl()>=5]];
+function checkBadges(){S.badges=S.badges||[];BADGES.forEach(b=>{if(!S.badges.includes(b[0])&&b[4]()){S.badges.push(b[0]);S.xp+=25;toast("Yangi yutuq: "+b[1]+" "+b[2]+" (+25 XP)")}});save()}
+function badgesCard(){const g=S.badges||[];return `<section class="card" style="margin-top:20px"><h3>🏅 Yutuqlar (${g.length}/${BADGES.length})</h3><div class="dirs">${BADGES.map(b=>`<div class="dir" style="${g.includes(b[0])?"":"opacity:.4;filter:grayscale(1)"}"><div class="e">${b[1]}</div><b>${b[2]}</b><small>${b[3]}</small></div>`).join("")}</div></section>`}
+function weeklyCard(){const n=new Date(),e=new Date(n);e.setHours(0,0,0,0);e.setDate(e.getDate()+((8-e.getDay())%7||7));const ms=e-n,dd=Math.floor(ms/864e5),hh=Math.floor(ms%864e5/36e5),me=board("w").find(u=>u.me);return `<div class="st" style="text-align:left;padding:16px;margin:14px 0;color:var(--tx)"><b style="font-size:16px">🏁 Haftalik musobaqa</b>Tugashiga: <b style="display:inline;color:var(--warn);font-size:inherit">${dd} kun ${hh} soat</b><br>Sening o‘ring: <b style="display:inline;font-size:inherit">${me.r}</b> • ${me.s} ball<br>Sovrinlar: 🥇 +300 XP • 🥈 +200 XP • 🥉 +100 XP</div>`}
+function stat(){
+ const days=[...Array(7)].map((_,i)=>{const d=new Date(Date.now()-(6-i)*864e5).toISOString().slice(0,10);return{d:d.slice(5),v:S.hist.filter(h=>h.d===d).reduce((a,h)=>a+h.c*10,0)}});
+ const mx=Math.max(10,...days.map(d=>d.v)),T=S.hist.reduce((a,h)=>a+h.n,0),C=S.hist.reduce((a,h)=>a+h.c,0);
+ return `<div class="grid"><section class="card"><h2>So‘nggi 7 kun (ball)</h2><div class="chart">${days.map(d=>`<div><span>${d.v}</span><i style="height:${d.v/mx*85}%"></i><span>${d.d}</span></div>`).join("")}</div></section>
+ <section class="card"><h3>Umumiy natija</h3><div class="stats" style="grid-template-columns:1fr 1fr"><div class="st"><b>${T}</b>Javob berilgan</div><div class="st"><b>${T?Math.round(C/T*100):0}%</b>To‘g‘rilik</div><div class="st"><b>${S.streak}</b>Seriya (kun)</div><div class="st"><b>${lvl()}</b>Level</div></div></section></div>${badgesCard()}`;
+}
+function set(){return `<section class="card" style="max-width:520px"><h2>Sozlamalar</h2><label>Ismingiz</label><br><input type="text" id="nm" value="${S.name.replace(/"/g,"&quot;")}" maxlength="24"><br><button class="btn" id="sv">Saqlash</button><hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><p style="color:var(--mut)">Barcha ball, XP va statistikani o‘chirib, boshidan boshlash.</p><button class="btn sec" id="rs">Progressni tozalash</button> <button class="btn sec" id="lo">Chiqish</button></section>`}
+function login(){const l=$("#lg");l.hidden=!!S.in;if(S.in)return;l.innerHTML=`<div class="box"><svg width="48" height="48" viewBox="0 0 40 40"><path d="M20 3 38 36H2z" fill="#2f6bff"/><path d="M20 14 28 30H12z" fill="#050b1a"/></svg><h1 style="margin:10px 0 4px">IT ARENA</h1><p style="color:var(--mut)">Bilim — kuch! Kir va reytingda o‘z o‘ringni egalla.</p><button class="gb" id="gg"><b style="color:#4285f4">G</b> Google bilan kirish</button><button class="btn sec" id="gs" style="width:100%">Mehmon sifatida davom etish</button><small style="color:var(--mut)">Demo rejim</small></div>`;
+ /* Haqiqiy loyihada: supabase.auth.signInWithOAuth({provider:'google'}) */
+ $("#gs").onclick=()=>{S.in=true;save();render()};$("#gg").onclick=async()=>{if(!SB){S.in=true;save();render();return}try{await SB.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}})}catch(e){toast("Google orqali kirishda xato")}}}
+function render(){
+ login();shell();
+ $("#view").innerHTML={home,quiz,duel,fr:friends,shop,rank,stat,set,more,quest,league,team,road,mist,code,cert,skin,prem,spon,teach,admin,notes}[view]();
+ const v=$("#view");
+ v.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go,b.dataset.c));
+ v.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>{const j=+b.dataset.o;clearInterval(QT);Q.pick=j;onAnswer(Q.qs[Q.i],j===Q.qs[Q.i][2]);if(j===Q.qs[Q.i][2])Q.ok++;render()});
+ const nx=$("#nx");if(nx)nx.onclick=()=>{if(Q.i+1<Q.qs.length){Q.i++;qtick()}else finish();render()};
+ v.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{RM=b.dataset.rm;render()});
+ v.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>duelAns(+b.dataset.d));
+ const dq=$("#dq");if(dq)dq.onclick=duelStart;
+ [["dm","mode"],["dc","cat"],["dl","lv"],["df","fr"]].forEach(([id,k])=>{const e=$("#"+id);if(e)e.onchange=()=>{DM[k]=e.value;render()}});
+ v.querySelectorAll("[data-gift]").forEach(b=>b.onclick=openGift);
+ v.querySelectorAll("[data-buy]").forEach(b=>b.onclick=()=>{const n=+b.dataset.buy;S.cards=(S.cards||0)+n;save();toast("Demo to‘lov muvaffaqiyatli: +"+n+" ta o‘yin");render()});
+ v.querySelectorAll("[data-pf]").forEach(b=>b.onclick=()=>{DM.fr=S.fr[+b.dataset.pf];go("duel")});
+ v.querySelectorAll("[data-rf]").forEach(b=>b.onclick=()=>{S.fr.splice(+b.dataset.rf,1);save();render()});
+ const fa=$("#fa");if(fa)fa.onclick=()=>{const n=$("#fn").value.trim().slice(0,20);S.fr=S.fr||[];if(n&&!S.fr.includes(n)){S.fr.push(n);save()}render()};
+ const ci=$("#ci");if(ci)ci.onclick=inviteCopy;
+ v.querySelectorAll("[data-qc]").forEach(b=>b.onclick=()=>{S.qs.c.push(b.dataset.qc);S.xp+=30;save();render()});
+ v.querySelectorAll("[data-jt]").forEach(b=>b.onclick=()=>{S.team=b.dataset.jt;save();render()});
+ v.querySelectorAll("[data-av]").forEach(b=>b.onclick=()=>{S.av=b.dataset.av;save();render()});
+ v.querySelectorAll("[data-sp]").forEach(b=>b.onclick=()=>{S.sp=S.sp||[];const k=b.dataset.sp,i=S.sp.indexOf(k);i<0?S.sp.push(k):S.sp.splice(i,1);save();render()});
+ v.querySelectorAll("[data-ct]").forEach(b=>b.onclick=()=>{CC[CI]=$("#ce").value;CI=+b.dataset.ct;CR="";render()});
+ const cr=$("#cr");if(cr)cr.onclick=runCode;
+ const pm=$("#pm");if(pm)pm.onclick=()=>{S.prem=!S.prem;save();render()};
+ const mp=$("#mp");if(mp)mp.onclick=()=>{go("quiz");Q={k:"mist",qs:(S.mist||[]).slice(0,10),i:0,ok:0,pick:null,end:false,t:15};qtick();render()};
+ const as=$("#as");if(as)as.onclick=()=>{const f=[0,1,2,3,4].map(i=>$("#a"+i).value.trim());if(f.every(Boolean)){API.addQuestion([$("#ac").value,$("#al").value,...f]);toast("Savol qo‘shildi")}else toast("Hamma maydonni to‘ldiring");render()};
+ const lo=$("#lo");if(lo)lo.onclick=async()=>{if(SB&&S.uid){try{await SB.auth.signOut()}catch(e){}}S.in=false;S.uid=null;save();render()};
+ const sv=$("#sv");if(sv)sv.onclick=()=>{S.name=$("#nm").value.trim()||"Foydalanuvchi";save();toast("Saqlandi");render()};
+ const rs=$("#rs");if(rs)rs.onclick=()=>{if(confirm("Haqiqatan ham tozalansinmi?")){S=Object.assign(S,{xp:0,score:0,streak:0,last:"",hist:[],daily:{}});save();render()}};
+}
+function fit(){const z=Math.max(1,Math.min(innerWidth/1500,innerHeight/820,3)),k=z>1.02?z:1,d=document.documentElement;d.style.zoom=k>1?k:"";d.style.setProperty("--ah",(innerHeight/k)+"px")}
+/* ===== SUPABASE ULANISHI: URL ni Supabase > Connect oynasidan tekshiring ===== */
+const SBC={url:"https://threvyirsrzvtemetiyh.supabase.co",key:"sb_publishable_8YC9TsQguRjBYYlJrxXQSQ_7mShPoh2"};
+let SB=null,LB=null,LBW=null,ST=null;
+try{if(window.supabase)SB=supabase.createClient(SBC.url,SBC.key)}catch(e){}
+function syncRemote(){if(!SB||!S.uid)return;clearTimeout(ST);ST=setTimeout(async()=>{try{await SB.from("profiles").upsert({id:S.uid,name:S.name,avatar:S.av||null,xp:S.xp,score:S.score,streak:S.streak,last_played:S.last||null})}catch(e){}},800)}
+async function loadLB(){if(!SB)return;try{const a=await SB.from("profiles").select("id,name,score,xp").order("score",{ascending:false}).limit(50),w=await SB.from("weekly_leaderboard").select("id,name,week_score").limit(50);if(a.data)LB=a.data.map(r=>({id:r.id,n:r.name||"Foydalanuvchi",s:r.score||0,l:Math.floor((r.xp||0)/500)+1}));if(w.data)LBW=w.data.map(r=>({id:r.id,n:r.name||"Foydalanuvchi",s:r.week_score||0,l:1}));render()}catch(e){}}
+async function onSession(u){S.uid=u.id;S.in=true;const m=u.user_metadata||{};try{const{data}=await SB.from("profiles").select("*").eq("id",u.id).maybeSingle();if(data){S.xp=data.xp||0;S.score=data.score||0;S.streak=data.streak||0;S.name=data.name||m.full_name||S.name;if(data.avatar)S.av=data.avatar}else{S.xp=0;S.score=0;S.streak=0;S.name=m.full_name||m.name||S.name}}catch(e){}localStorage.setItem("itarena",JSON.stringify(S));syncRemote();render();loadLB()}
+async function initAuth(){if(!SB)return;try{const{data}=await SB.auth.getSession();if(data.session)await onSession(data.session.user);SB.auth.onAuthStateChange((ev,ses)=>{if(ev==="SIGNED_IN"&&ses&&S.uid!==ses.user.id)onSession(ses.user)});loadLB()}catch(e){}}
+addEventListener("resize",fit);fit();
+(S.custom||[]).forEach(c=>CATS[c[0]]&&CATS[c[0]].q.push(mk(c.slice(2),c[1])));
+render();
+initAuth();
+</script>
+</body>
+</html>
